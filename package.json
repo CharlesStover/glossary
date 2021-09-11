@@ -1,0 +1,38 @@
+{
+  "author": "Charles Stover <glossary@charlesstover.com>",
+  "description": "glossary application generator",
+  "homepage": "https://github.com/CharlesStover/glossary/",
+  "packageManager": "yarn@3.0.2",
+  "repository": "github:CharlesStover/glossary",
+  "private": true,
+  "type": "commonjs",
+  "bugs": {
+    "email": "glossary@charlesstover.com",
+    "url": "https://github.com/CharlesStover/glossary/issues"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "scripts": {
+    "build:start": "yarn workspace @glossary/build run start",
+    "demo:start": "yarn workspace @glossary/demo run start",
+    "react:build": "yarn workspace @glossary/react run build",
+    "react:start": "yarn workspace @glossary/react run start"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "@yarnpkg/sdks": "^2.4.2-rc.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-chai-friendly": "^0.7.2",
+    "eslint-plugin-cypress": "^2.11.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.3.2"
+  }
+}

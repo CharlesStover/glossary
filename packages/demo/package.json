@@ -1,0 +1,8 @@
+{
+  "name": "@glossary/demo",
+  "private": true,
+  "scripts": {
+    "build": "glossary build",
+    "start": "glossary start"
+  }
+}

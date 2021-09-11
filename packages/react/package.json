@@ -1,0 +1,85 @@
+{
+  "name": "@glossary/react",
+  "version": "0.1.0",
+  "author": "Charles Stover <glossary+react@charlesstover.com>",
+  "description": "React application for a glossary appliccation",
+  "homepage": "https://www.npmjs.com/package/@glossary/react",
+  "license": "MIT",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "repository": "github:CharlesStover/glossary",
+  "type": "module",
+  "types": "./types/index.d.ts",
+  "bugs": {
+    "email": "glossary+react@charlesstover.com",
+    "url": "https://github.com/CharlesStover/glossary/issues"
+  },
+  "directories": {
+    "lib": "src"
+  },
+  "exports": {
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.cjs"
+  },
+  "files": [
+    "dist",
+    "types"
+  ],
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/CharlesStover"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/cjs/index.cjs",
+    "module": "./dist/esm/index.js"
+  },
+  "scripts": {
+    "build": "rollup --config",
+    "eslint": "eslint src",
+    "jest": "jest",
+    "start": "rollup --config --watch",
+    "test": "eslint src && jest",
+    "test-watch": "jest --coverage=false --watch"
+  },
+  "dependencies": {
+    "use-awsui": "^1.0.7",
+    "use-awsui-router": "^1.2.2",
+    "use-awsui-table-item-description": "^1.0.5"
+  },
+  "devDependencies": {
+    "@awsui/components-react": "^3.0.239",
+    "@awsui/design-tokens": "^3.0.13",
+    "@awsui/global-styles": "^1.0.9",
+    "@awsui/test-utils-core": "^1.0.13",
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-url": "^6.1.0",
+    "@testing-library/react": "^11.0.0",
+    "@testing-library/react-hooks": "^7.0.0",
+    "@types/jest": "^26.0.0",
+    "@types/node": "^15.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "jest": "^27.0.0",
+    "node-sass": "^6.0.0",
+    "postcss": "^8.3.6",
+    "postcss-url": "^10.1.3",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-test-renderer": "^17.0.0",
+    "rollup": "^2.0.0",
+    "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "ts-jest": "^27.0.0",
+    "tslib": "^2.0.0",
+    "typescript": "^4.1.0"
+  },
+  "peerDependencies": {
+    "@awsui/components-react": "^3.0.239",
+    "@awsui/design-tokens": "^3.0.13",
+    "@awsui/global-styles": "^1.0.9",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  }
+}
