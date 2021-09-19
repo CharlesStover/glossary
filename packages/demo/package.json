@@ -1,8 +1,15 @@
 {
   "name": "@glossary/demo",
+  "homepage": ".",
   "private": true,
   "scripts": {
-    "build": "glossary build",
-    "start": "glossary start"
+    "build": "react-app-rewired build",
+    "start": "react-app-rewired start"
+  },
+  "devDependencies": {
+    "@glossary/build": "workspace:packages/build",
+    "react": "^17.0.2",
+    "react-app-rewired": "^2.1.8",
+    "typescript": "^4.4.3"
   }
 }

@@ -14,7 +14,9 @@
     "access": "restricted"
   },
   "scripts": {
+    "build:build": "yarn workspace @glossary/build run build",
     "build:start": "yarn workspace @glossary/build run start",
+    "demo:build": "yarn workspace @glossary/demo run build",
     "demo:start": "yarn workspace @glossary/demo run start",
     "react:build": "yarn workspace @glossary/react run build",
     "react:start": "yarn workspace @glossary/react run start"
@@ -23,16 +25,17 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.30.0",
-    "@typescript-eslint/parser": "^4.30.0",
-    "@yarnpkg/sdks": "^2.4.2-rc.2",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "@yarnpkg/sdks": "^2.4.2-rc.5",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-chai-friendly": "^0.7.2",
-    "eslint-plugin-cypress": "^2.11.3",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react": "^7.25.2",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.3"
   }
 }
