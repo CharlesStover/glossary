@@ -17,6 +17,7 @@ jobs:
         env:
           # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
           CI: false
+          YARN_CHECKSUM_BEHAVIOR: update
 
   build-demo:
     needs: install
@@ -35,6 +36,7 @@ jobs:
         env:
           # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
           CI: false
+          YARN_CHECKSUM_BEHAVIOR: update
       - name: Build
         run: yarn build
         working-directory: ./packages/demo
@@ -62,6 +64,7 @@ jobs:
         env:
           # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
           CI: false
+          YARN_CHECKSUM_BEHAVIOR: update
       - name: Build
         run: yarn build
         working-directory: ./packages/build
@@ -88,6 +91,7 @@ jobs:
         env:
           # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
           CI: false
+          YARN_CHECKSUM_BEHAVIOR: update
       - name: Build
         run: yarn build
         working-directory: ./packages/react
