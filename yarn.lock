@@ -1868,6 +1868,8 @@ __metadata:
     react-dev-utils: ^11.0.0
     react-scripts: ^4.0.0
     typescript: ^4.4.0
+  bin:
+    build-glossary: ./bin/build-glossary.js
   languageName: unknown
   linkType: soft
 

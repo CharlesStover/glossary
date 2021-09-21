@@ -1,6 +1,6 @@
 /* eslint-disable */
 module.exports = {
   getConfigOverrides() {
-    return require('./config-overrides');
+    return require('./config-overrides.cjs');
   },
 };

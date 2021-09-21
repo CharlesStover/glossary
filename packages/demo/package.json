@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "homepage": ".",
   "private": true,
+  "type": "commonjs",
   "scripts": {
-    "build": "node './build-glossary.mjs' && react-app-rewired build",
-    "start": "node './build-glossary.mjs' && react-app-rewired start"
+    "build": "build-glossary && react-app-rewired build",
+    "start": "build-glossary && react-app-rewired start"
   },
   "devDependencies": {
     "@glossary/build": "workspace:packages/build",

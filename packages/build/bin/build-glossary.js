@@ -1,22 +1,21 @@
 /* eslint-disable */
-import {
+const {
   mkdirSync,
   readdirSync,
   readFileSync,
   rmSync,
-  stat,
+  statSync,
   writeFileSync,
-} from 'node:fs';
-import { promisify } from 'node:util';
+} = require('fs');
+const { join } = require('path');
+const { promisify } = require('util');
 
-const ROOT_PATH = './.glossary';
-
-const statPromise = promisify(stat);
+const ROOT_PATH = join(process.cwd(), '.glossary');
 
 const jsonFiles = [];
 for (const name of readdirSync(ROOT_PATH)) {
-  const filePath = `${ROOT_PATH}/${name}`;
-  const stats = await statPromise(filePath);
+  const filePath = join(ROOT_PATH, name);
+  const stats = statSync(filePath);
   if (stats.isFile() && name.endsWith('.json')) {
     jsonFiles.push(filePath);
   }
@@ -69,12 +68,13 @@ for (const [word, definition] of Object.entries(mainJson)) {
   }
 }
 
+const TEMP_PATH = join(ROOT_PATH, '.temp');
 try {
-  rmSync('./.glossary/.temp', { recursive: true });
+  rmSync(TEMP_PATH, { recursive: true });
 } catch (err) {}
-mkdirSync('./.glossary/.temp');
+mkdirSync(TEMP_PATH);
 
-let exports = [];
+let defaultExports = [];
 let imports = [];
 let index = 0;
 for (const set of new Set(map.values())) {
@@ -85,7 +85,7 @@ for (const set of new Set(map.values())) {
   }
 
   writeFileSync(
-    `${ROOT_PATH}/.temp/${index}.json`,
+    join(TEMP_PATH, `${index}.json`),
     JSON.stringify(batchJson, null, 2),
   );
   imports.push(
@@ -93,22 +93,22 @@ for (const set of new Set(map.values())) {
   import('./${index}.json');`,
   );
   for (const word of set) {
-    exports.push(`"${word}": _${index},`);
+    defaultExports.push(`"${word}": _${index},`);
   }
 }
 
 writeFileSync(
-  `${ROOT_PATH}/.temp/glossary.ts`,
+  join(TEMP_PATH, 'glossary.ts'),
   `${imports.join('\n')}
 
 export default {
-  ${exports.join('\n')}
+  ${defaultExports.join('\n')}
 };
 `,
 );
 
 writeFileSync(
-  `${ROOT_PATH}/.temp/index.tsx`,
+  join(TEMP_PATH, 'index.tsx'),
   `import Glossary from '@glossary/react';
 import { render } from 'react-dom';
 import GLOSSARY from './glossary';

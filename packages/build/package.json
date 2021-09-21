@@ -1,6 +1,6 @@
 {
   "name": "@glossary/build",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Charles Stover <glossary+build@charlesstover.com>",
   "description": "Build utilities for a glossary application",
   "homepage": "https://www.npmjs.com/package/@glossary/build",
@@ -8,6 +8,9 @@
   "main": "./index.cjs",
   "repository": "github:CharlesStover/glossary",
   "type": "commonjs",
+  "bin": {
+    "build-glossary": "./bin/build-glossary.js"
+  },
   "bugs": {
     "email": "glossary+build@charlesstover.com",
     "url": "https://github.com/CharlesStover/glossary/issues"
@@ -16,6 +19,7 @@
     "require": "./index.cjs"
   },
   "files": [
+    "bin",
     "public",
     "src",
     "config-overrides.js",
