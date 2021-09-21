@@ -142,11 +142,14 @@ export default function useGlossary(
     ),
 
     itemsProps: useMemo((): readonly (Required<Attributes> & ItemProps)[] => {
-      const filterBySearch = (word: string): boolean =>
-        search === '' || word.toLowerCase().includes(search.toLowerCase());
+      const filterBySearchOrSelected = (word: string): boolean =>
+        search === '' ||
+        word === selectedWord ||
+        word.toLowerCase().includes(search.toLowerCase());
 
-      const words: readonly string[] =
-        mapRecordToSortedKeys(glossaryFileRecord).filter(filterBySearch);
+      const words: readonly string[] = mapRecordToSortedKeys(
+        glossaryFileRecord,
+      ).filter(filterBySearchOrSelected);
 
       const mapWordToItemProps = (
         word: string,
