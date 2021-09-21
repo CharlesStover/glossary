@@ -2,27 +2,22 @@ import SearchIcon from '@mui/icons-material/Search';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
+import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import { ThemeProvider } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import type { ReactElement } from 'react';
-import useGlossary from './glossary.root.hook';
-import mapComponentToPropMapper from './utils/map-component-to-prop-mapper';
-import Item from './glossary.item.view';
-import Search from './glossary.search.view';
-import SearchIconWrapper from './search-icon-wrapper.view';
-import StyledInputBase from './search-input-base';
-import IconButton from '@mui/material/IconButton';
-
-/*
-This file is a placeholder for `@glossary/react` during development.
-*/
+import Item from '../../components/item';
+import Search from '../../components/search';
+import SearchIconWrapper from '../../components/search-icon-wrapper';
+import StyledInputBase from '../../components/search-input-base';
+import type DefinitionFileGetter from '../../types/definition-file-getter';
+import mapComponentToPropMapper from '../../utils/map-component-to-prop-mapper';
+import useGlossary from './glossary.main.hook';
 
 interface Props {
-  readonly children: Readonly<
-    Record<string, () => Promise<{ default: Record<string, string> }>>
-  >;
+  readonly children: Readonly<Record<string, DefinitionFileGetter>>;
 }
 
 const mapPropsToItem = mapComponentToPropMapper(Item);

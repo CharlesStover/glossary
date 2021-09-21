@@ -1,0 +1,109 @@
+name: Push
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          cache: yarn
+          check-latest: true
+          node-version: 'lts/*'
+      - name: Install dependencies
+        run: yarn
+
+  build-demo:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          cache: yarn
+          check-latest: true
+          node-version: 'lts/*'
+      - name: Install dependencies
+        run: yarn
+      - name: Build
+        run: yarn build
+        working-directory: ./packages/demo
+      - name: Upload build
+        uses: actions/upload-artifact@v2
+        with:
+          if-no-files-found: error
+          name: build
+          path: build
+
+  publish-build:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          cache: yarn
+          check-latest: true
+          node-version: 'lts/*'
+      - name: Install dependencies
+        run: yarn
+      - name: Build
+        run: yarn build
+        working-directory: ./packages/build
+      - name: Publish
+        run: yarn npm publish
+        working-directory: ./packages/build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+  publish-react:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          cache: yarn
+          check-latest: true
+          node-version: 'lts/*'
+      - name: Install dependencies
+        run: yarn
+      - name: Build
+        run: yarn build
+        working-directory: ./packages/react
+      - name: Publish
+        run: yarn npm publish
+        working-directory: ./packages/react
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+  github-pages:
+    needs: build-demo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download build
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          clean: true
+          folder: build
+          single-commit: true
+
+on:
+  push:
+    branches: [main]

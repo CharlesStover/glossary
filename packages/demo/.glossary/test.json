@@ -1,0 +1,7 @@
+{
+  "AceAlters": "This is a ${{ project }}.",
+  "Charles Stover": "This is my name",
+  "project": "Something on which I have worked.",
+  "test word": "This is a second ${{ word }}.",
+  "word": "This is a first word."
+}

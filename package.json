@@ -1,14 +1,20 @@
 {
+  "name": "@glossary/index",
+  "version": "1.0.0",
   "author": "Charles Stover <glossary@charlesstover.com>",
   "description": "glossary application generator",
   "homepage": "https://github.com/CharlesStover/glossary/",
+  "license": "MIT",
   "packageManager": "yarn@3.0.2",
-  "repository": "github:CharlesStover/glossary",
   "private": true,
-  "type": "commonjs",
+  "repository": "github:CharlesStover/glossary",
   "bugs": {
     "email": "glossary@charlesstover.com",
     "url": "https://github.com/CharlesStover/glossary/issues"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/CharlesStover"
   },
   "publishConfig": {
     "access": "restricted"

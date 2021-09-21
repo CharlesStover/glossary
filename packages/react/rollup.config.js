@@ -1,9 +1,7 @@
+/* eslint-disable */
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
-import url from '@rollup/plugin-url';
 import path from 'path';
-import postcssUrl from 'postcss-url';
-import postcss from 'rollup-plugin-postcss';
 import typescript2 from 'rollup-plugin-typescript2';
 import packageJson from './package.json';
 
@@ -55,27 +53,6 @@ export default [
       },
     ],
     plugins: [
-      url(),
-      postcss({
-        autoModules: true,
-        extract: false,
-        minimize: !IS_DEV,
-        use: ['sass'],
-        plugins: [
-          postcssUrl([
-            {
-              encodeType: 'base64',
-              maxSize: 1024,
-              url: 'inline',
-            },
-            {
-              assetsPath: 'images',
-              url: 'copy',
-              useHash: true,
-            },
-          ]),
-        ],
-      }),
       nodeResolve({
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         preferBuiltins: true,

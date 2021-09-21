@@ -7,13 +7,13 @@ import type {
 } from 'react';
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import useTheme from './glossary.root.hook.theme';
-import type AsyncState from './types/async-state';
-import type DefinitionFileGetter from './types/definition-file-getter';
-import type ItemProps from './types/item-props';
-import getDefaultAsyncState from './utils/get-default-async-state';
-import mapHashToWord from './utils/map-hash-to-word';
-import mapRecordToSortedKeys from './utils/map-record-to-sorted-keys';
+import type AsyncState from '../../types/async-state';
+import type DefinitionFileGetter from '../../types/definition-file-getter';
+import type ItemProps from '../../types/item-props';
+import getDefaultAsyncState from '../../utils/get-default-async-state';
+import mapRecordToSortedKeys from '../../utils/map-record-to-sorted-keys';
+import mapWordToId from '../../utils/map-word-to-id';
+import useTheme from './glossary.main.hook.theme';
 
 interface State {
   readonly asyncEffectRef: MutableRefObject<Promise<unknown> | undefined>;
@@ -28,6 +28,8 @@ interface State {
   ) => void;
 }
 
+const FIRST_CHARACTER = 1;
+
 export default function useGlossary(
   glossaryFileRecord: Readonly<Record<string, DefinitionFileGetter>>,
 ): State {
@@ -41,7 +43,22 @@ export default function useGlossary(
   const [asyncStateMap, setAsyncStateMap] = useState(getDefaultAsyncState);
   const [search, setSearch] = useState('');
   const { handleThemeToggle, ThemeIcon, theme } = useTheme();
-  const selectedWord: string | undefined = mapHashToWord(hash);
+
+  const selectedWord: string | undefined = useMemo((): string | undefined => {
+    if (!hash.startsWith('#') || hash.length === FIRST_CHARACTER) {
+      return;
+    }
+
+    const selectedId: string = hash.substring(FIRST_CHARACTER);
+    for (const word of Object.keys(glossaryFileRecord)) {
+      if (mapWordToId(word) !== selectedId) {
+        continue;
+      }
+      return word;
+    }
+
+    return;
+  }, [glossaryFileRecord, hash]);
 
   const loadDefinitionFile = useMemo(():
     | (() => Promise<unknown>)
@@ -166,15 +183,17 @@ export default function useGlossary(
           return asyncState.loading;
         };
 
+        const id: string = mapWordToId(word);
         return {
           definition: getDefinition(),
-          key: word,
+          id,
+          key: id,
           loading: getLoading(),
           search,
           selected,
           word,
           onClick: (): void => {
-            history.push(`#${word}`);
+            history.push(`#${id}`);
           },
         };
       };

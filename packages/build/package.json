@@ -1,8 +1,22 @@
 {
   "name": "@glossary/build",
-  "main": "index.cjs",
-  "module": "index.mjs",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "author": "Charles Stover <glossary+build@charlesstover.com>",
+  "description": "Build utilities for a glossary application",
+  "homepage": "https://www.npmjs.com/package/@glossary/build",
+  "license": "MIT",
+  "main": "./index.cjs",
+  "module": "./index.js",
+  "repository": "github:CharlesStover/glossary",
+  "type": "module",
+  "bugs": {
+    "email": "glossary+build@charlesstover.com",
+    "url": "https://github.com/CharlesStover/glossary/issues"
+  },
+  "exports": {
+    "import": "./index.js",
+    "require": "./index.cjs"
+  },
   "files": [
     "public",
     "src",
@@ -13,6 +27,15 @@
     "README.md",
     "tsconfig.json"
   ],
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/CharlesStover"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "./index.cjs",
+    "module": "./index.js"
+  },
   "scripts": {
     "build": "react-scripts build",
     "start": "react-scripts start",

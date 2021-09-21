@@ -1,0 +1,6 @@
+{
+  "number": "e.g. ${{ one }}, ${{ two }}, or ${{ three }}.",
+  "one": "The first ${{ number }}.",
+  "three": "The third ${{ number }}.",
+  "two": "The second ${{ number }}."
+}

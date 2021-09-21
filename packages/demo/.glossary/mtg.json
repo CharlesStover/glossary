@@ -1,0 +1,12 @@
+{
+  "black": "represented by B",
+  "blue": "represented by U",
+  "Chandra": "a ${{ red }} planeswalker",
+  "Gideon": "a ${{ white }} planeswalker",
+  "green": "represented by G",
+  "Jace": "a ${{ blue }} planeswalker",
+  "Liliana": "a ${{ black }} planeswalker",
+  "Nissa": "a ${{ green }} planeswalker",
+  "red": "represented by R",
+  "white": "represented by W"
+}
