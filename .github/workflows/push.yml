@@ -13,8 +13,10 @@ jobs:
           check-latest: true
           node-version: 'lts/*'
       - name: Install dependencies
-        # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
-        run: rm yarn.lock && yarn install
+        run: yarn install
+        env:
+          # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
+          CI: false
 
   build-demo:
     needs: install
@@ -29,9 +31,10 @@ jobs:
           check-latest: true
           node-version: 'lts/*'
       - name: Install dependencies
-        # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
-        run: rm yarn.lock && yarn install
-        working-directory: ./packages/demo
+        run: yarn install
+        env:
+          # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
+          CI: false
       - name: Build
         run: yarn build
         working-directory: ./packages/demo
@@ -55,9 +58,10 @@ jobs:
           check-latest: true
           node-version: 'lts/*'
       - name: Install dependencies
-        # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
-        run: rm yarn.lock && yarn install
-        working-directory: ./packages/demo
+        run: yarn install
+        env:
+          # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
+          CI: false
       - name: Build
         run: yarn build
         working-directory: ./packages/build
@@ -80,9 +84,10 @@ jobs:
           check-latest: true
           node-version: 'lts/*'
       - name: Install dependencies
-        # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
-        run: rm yarn.lock && yarn install
-        working-directory: ./packages/demo
+        run: yarn install
+        env:
+          # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
+          CI: false
       - name: Build
         run: yarn build
         working-directory: ./packages/react
