@@ -30,10 +30,10 @@ function Primary({ children, search }: PrimaryProps): ReactElement {
   const newChildren: ReactNode[] = [split[FIRST]];
   for (let i = 1; i < split.length; i++) {
     newChildren.push(
-      <Fragment key={i * OFFSET_MULTIPLIER}>{split[i]}</Fragment>,
+      <strong key={i * OFFSET_MULTIPLIER + NEXT}>{search}</strong>,
     );
     newChildren.push(
-      <strong key={i * OFFSET_MULTIPLIER + NEXT}>{search}</strong>,
+      <Fragment key={i * OFFSET_MULTIPLIER}>{split[i]}</Fragment>,
     );
   }
 
