@@ -14,7 +14,7 @@ jobs:
           node-version: 'lts/*'
       - name: Install dependencies
         # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
-        run: yarn --mode=update-lockfile
+        run: rm yarnk.lock && yarn install
 
   build-demo:
     needs: install
@@ -30,7 +30,7 @@ jobs:
           node-version: 'lts/*'
       - name: Install dependencies
         # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
-        run: yarn --mode=update-lockfile
+        run: rm yarnk.lock && yarn install
         working-directory: ./packages/demo
       - name: Build
         run: yarn build
@@ -56,7 +56,7 @@ jobs:
           node-version: 'lts/*'
       - name: Install dependencies
         # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
-        run: yarn --mode=update-lockfile
+        run: rm yarnk.lock && yarn install
         working-directory: ./packages/demo
       - name: Build
         run: yarn build
@@ -81,7 +81,7 @@ jobs:
           node-version: 'lts/*'
       - name: Install dependencies
         # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
-        run: yarn --mode=update-lockfile
+        run: rm yarnk.lock && yarn install
         working-directory: ./packages/demo
       - name: Build
         run: yarn build
