@@ -8,7 +8,6 @@ const {
   writeFileSync,
 } = require('fs');
 const { join } = require('path');
-const { promisify } = require('util');
 
 const ROOT_PATH = join(process.cwd(), '.glossary');
 
