@@ -13,7 +13,8 @@ jobs:
           check-latest: true
           node-version: 'lts/*'
       - name: Install dependencies
-        run: yarn
+        # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
+        run: yarn --skip-integrity-check
 
   build-demo:
     needs: install
@@ -28,7 +29,8 @@ jobs:
           check-latest: true
           node-version: 'lts/*'
       - name: Install dependencies
-        run: yarn
+        # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
+        run: yarn --skip-integrity-check
       - name: Build
         run: yarn build
         working-directory: ./packages/demo
@@ -52,7 +54,8 @@ jobs:
           check-latest: true
           node-version: 'lts/*'
       - name: Install dependencies
-        run: yarn
+        # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
+        run: yarn --skip-integrity-check
       - name: Build
         run: yarn build
         working-directory: ./packages/build
@@ -75,7 +78,8 @@ jobs:
           check-latest: true
           node-version: 'lts/*'
       - name: Install dependencies
-        run: yarn
+        # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
+        run: yarn --skip-integrity-check
       - name: Build
         run: yarn build
         working-directory: ./packages/react
