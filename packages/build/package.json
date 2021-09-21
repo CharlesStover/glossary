@@ -6,15 +6,13 @@
   "homepage": "https://www.npmjs.com/package/@glossary/build",
   "license": "MIT",
   "main": "./index.cjs",
-  "module": "./index.js",
   "repository": "github:CharlesStover/glossary",
-  "type": "module",
+  "type": "commonjs",
   "bugs": {
     "email": "glossary+build@charlesstover.com",
     "url": "https://github.com/CharlesStover/glossary/issues"
   },
   "exports": {
-    "import": "./index.js",
     "require": "./index.cjs"
   },
   "files": [
@@ -22,7 +20,6 @@
     "src",
     "config-overrides.js",
     "index.cjs",
-    "index.mjs",
     "package.json",
     "README.md",
     "tsconfig.json"
@@ -33,45 +30,7 @@
   },
   "publishConfig": {
     "access": "public",
-    "main": "./index.cjs",
-    "module": "./index.js"
-  },
-  "scripts": {
-    "build": "react-scripts build",
-    "start": "react-scripts start",
-    "test": "react-scripts test"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.4.1",
-    "@emotion/styled": "^11.3.0",
-    "@glossary/react": "workspace:packages/react",
-    "@mui/icons-material": "^5.0.0",
-    "@mui/material": "^5.0.0",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.1.0",
-    "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.9.2",
-    "@types/react": "^17.0.21",
-    "@types/react-dom": "^17.0.9",
-    "@types/react-router-dom": "^5.1.9",
-    "@typescript-eslint/eslint-plugin": "^4.31.1",
-    "@typescript-eslint/parser": "^4.31.1",
-    "cross-spawn": "^7.0.3",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-chai-friendly": "^0.7.2",
-    "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.25.2",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "^2.4.1",
-    "react-dev-utils": "^11.0.4",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^5.3.0",
-    "react-scripts": "^4.0.3",
-    "use-params-memo": "^1.0.0",
-    "web-vitals": "^2.1.0"
+    "main": "./index.cjs"
   },
   "peerDependencies": {
     "react": "^17.0.0",

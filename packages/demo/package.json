@@ -1,5 +1,6 @@
 {
   "name": "@glossary/demo",
+  "version": "1.0.0",
   "homepage": ".",
   "private": true,
   "scripts": {

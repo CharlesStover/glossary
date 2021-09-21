@@ -59,20 +59,11 @@ jobs:
           cache: yarn
           check-latest: true
           node-version: 'lts/*'
-      - name: Install dependencies
-        run: yarn install
-        env:
-          # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
-          CI: false
-          YARN_CHECKSUM_BEHAVIOR: update
-      - name: Build
-        run: yarn build
-        working-directory: ./packages/build
       - name: Publish
-        run: yarn npm publish
+        run: yarn npm publish --tolerate-republish
         working-directory: ./packages/build
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
   publish-react:
     needs: install
@@ -96,10 +87,10 @@ jobs:
         run: yarn build
         working-directory: ./packages/react
       - name: Publish
-        run: yarn npm publish
+        run: yarn npm publish --tolerate-republish
         working-directory: ./packages/react
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
   github-pages:
     needs: build-demo

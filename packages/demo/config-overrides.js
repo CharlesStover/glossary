@@ -1,1 +1,4 @@
-module.exports = require('@glossary/build/config-overrides');
+/* eslint-disable */
+const { getConfigOverrides } = require('@glossary/build');
+
+module.exports = getConfigOverrides();
