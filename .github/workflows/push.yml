@@ -37,9 +37,18 @@ jobs:
           # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
           CI: false
           YARN_CHECKSUM_BEHAVIOR: update
-      - name: Build
+      - name: 'Build @glossary/react'
         run: yarn build
+        working-directory: ./packages/react
+          # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
+          CI: false
+          YARN_CHECKSUM_BEHAVIOR: update
+      - name: Build
+        run: yarn && yarn build
         working-directory: ./packages/demo
+          # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
+          CI: false
+          YARN_CHECKSUM_BEHAVIOR: update
       - name: Upload build
         uses: actions/upload-artifact@v2
         with:
