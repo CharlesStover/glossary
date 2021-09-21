@@ -40,6 +40,7 @@ jobs:
       - name: 'Build @glossary/react'
         run: yarn build
         working-directory: ./packages/react
+        env:
           # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
           CI: false
           YARN_CHECKSUM_BEHAVIOR: update
@@ -69,8 +70,10 @@ jobs:
           check-latest: true
           node-version: 'lts/*'
       - name: Publish
-        run: yarn npm publish --tolerate-republish
         working-directory: ./packages/build
+        run: >
+          yarn config set npmAuthToken $NPM_AUTH_TOKEN;
+          yarn npm publish --tolerate-republish;
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
@@ -96,8 +99,10 @@ jobs:
         run: yarn build
         working-directory: ./packages/react
       - name: Publish
-        run: yarn npm publish --tolerate-republish
         working-directory: ./packages/react
+        run: >
+          yarn config set npmAuthToken $NPM_AUTH_TOKEN;
+          yarn npm publish --tolerate-republish;
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
