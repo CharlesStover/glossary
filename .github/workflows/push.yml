@@ -31,6 +31,7 @@ jobs:
       - name: Install dependencies
         # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
         run: yarn --mode=update-lockfile
+        working-directory: ./packages/demo
       - name: Build
         run: yarn build
         working-directory: ./packages/demo
@@ -56,6 +57,7 @@ jobs:
       - name: Install dependencies
         # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
         run: yarn --mode=update-lockfile
+        working-directory: ./packages/demo
       - name: Build
         run: yarn build
         working-directory: ./packages/build
@@ -80,6 +82,7 @@ jobs:
       - name: Install dependencies
         # Skip integrity check; browserslist@4.17.0 has the wrong checksum.
         run: yarn --mode=update-lockfile
+        working-directory: ./packages/demo
       - name: Build
         run: yarn build
         working-directory: ./packages/react
