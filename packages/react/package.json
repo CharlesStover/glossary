@@ -1,6 +1,6 @@
 {
   "name": "@glossary/react",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Charles Stover <glossary+react@charlesstover.com>",
   "description": "React component for a glossary application",
   "homepage": "https://www.npmjs.com/package/@glossary/react",

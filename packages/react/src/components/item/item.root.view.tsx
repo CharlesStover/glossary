@@ -13,6 +13,7 @@ export default function Item({
   id,
   loading,
   onClick,
+  redirect,
   search,
   selected,
   word,
@@ -38,8 +39,16 @@ export default function Item({
       <ListItemIcon>{loading && <CircularProgress size="1rem" />}</ListItemIcon>
       <ListItemText
         id={id}
-        primary={<Primary search={search}>{word}</Primary>}
-        secondary={<Secondary loading={loading}>{definition}</Secondary>}
+        primary={
+          <Primary redirect={redirect} search={search}>
+            {word}
+          </Primary>
+        }
+        secondary={
+          <Secondary loading={loading} selected={selected}>
+            {definition}
+          </Secondary>
+        }
       />
     </ListItemButton>
   );

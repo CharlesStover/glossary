@@ -22,6 +22,18 @@ interface Props {
 const DEFINITION_REDIRECT = /^\${{ ([\d\w ]+) }}$/;
 const FIRST_MATCH = 1;
 
+const mapDefinitionToRedirectWord = (
+  definition: string,
+): string | undefined => {
+  const redirect: RegExpMatchArray | null =
+    DEFINITION_REDIRECT.exec(definition);
+  if (redirect === null) {
+    return;
+  }
+  const redirectWord: string | undefined = redirect[FIRST_MATCH];
+  return redirectWord;
+};
+
 export default function useItemsProps({
   asyncStateMap,
   glossaryFileRecord,
@@ -51,7 +63,6 @@ export default function useItemsProps({
 
       const asyncState: AsyncState | undefined =
         asyncStateMap.get(getDefinitionFile);
-      const selected: boolean = word === selectedWord;
 
       const getDefinition = ():
         | (
@@ -66,9 +77,6 @@ export default function useItemsProps({
         if (typeof asyncState.data === 'undefined') {
           return;
         }
-        if (!selected) {
-          return;
-        }
 
         const definition: string | undefined = asyncState.data[word];
         if (typeof definition === 'undefined') {
@@ -77,25 +85,36 @@ export default function useItemsProps({
 
         // A definitions that is only one other words should redirect to that
         //   word.
-        const redirect: RegExpMatchArray | null =
-          DEFINITION_REDIRECT.exec(definition);
-        if (redirect !== null) {
-          const redirectWord: string | undefined = redirect[FIRST_MATCH];
-          if (typeof redirectWord === 'string') {
-            const redirectId: string = mapWordToId(redirectWord);
-            return [
-              {
-                Component: Redirect,
-                props: {
-                  key: 'redirect',
-                  to: `#${redirectId}`,
-                },
+        const redirectWord: string | undefined =
+          mapDefinitionToRedirectWord(definition);
+        if (typeof redirectWord === 'string') {
+          const redirectId: string = mapWordToId(redirectWord);
+          return [
+            {
+              Component: Redirect,
+              props: {
+                key: 'redirect',
+                to: `#${redirectId}`,
               },
-            ];
-          }
+            },
+          ];
         }
 
         return mapDefinitionToMetaComponents(definition);
+      };
+
+      const getRedirect = (): string | undefined => {
+        if (
+          typeof asyncState === 'undefined' ||
+          typeof asyncState.data === 'undefined'
+        ) {
+          return;
+        }
+        const definition: string | undefined = asyncState.data[word];
+        if (typeof definition === 'undefined') {
+          return;
+        }
+        return mapDefinitionToRedirectWord(definition);
       };
 
       const id: string = mapWordToId(word);
@@ -104,8 +123,9 @@ export default function useItemsProps({
         id,
         key: id,
         loading: mapAsyncStateToLoading(asyncState),
+        redirect: getRedirect(),
         search,
-        selected,
+        selected: word === selectedWord,
         word,
         onClick: (): void => {
           history.push(`#${id}`);

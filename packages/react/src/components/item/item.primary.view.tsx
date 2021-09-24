@@ -1,33 +1,31 @@
-import type { ReactElement, ReactNode } from 'react';
-import { Fragment } from 'react';
+import type { ReactElement } from 'react';
+import validateString from '../../utils/validate-string';
+import PrimaryHighlight from './item.primary-highlight.view';
+import styles from './item.primary.module.scss';
 
-interface PrimaryProps {
+interface Props {
   readonly children: string;
+  readonly redirect?: string | undefined;
   readonly search: string;
 }
 
-const FIRST = 0;
-const NEXT = 1;
-const OFFSET_MULTIPLIER = 2;
+const redirectClassName: string = validateString(styles.redirect);
 
 export default function Primary({
   children,
+  redirect,
   search,
-}: PrimaryProps): ReactElement {
-  if (search === '') {
-    return <>{children}</>;
+}: Props): ReactElement {
+  if (typeof redirect === 'undefined') {
+    return <PrimaryHighlight search={search}>{children}</PrimaryHighlight>;
   }
 
-  const split: string[] = children.split(search);
-  const newChildren: ReactNode[] = [split[FIRST]];
-  for (let i = 1; i < split.length; i++) {
-    newChildren.push(
-      <strong key={i * OFFSET_MULTIPLIER + NEXT}>{search}</strong>,
-    );
-    newChildren.push(
-      <Fragment key={i * OFFSET_MULTIPLIER}>{split[i]}</Fragment>,
-    );
-  }
-
-  return <>{newChildren}</>;
+  return (
+    <>
+      <span className={redirectClassName}>
+        <PrimaryHighlight search={search}>{children}</PrimaryHighlight>
+      </span>{' '}
+      - See: {redirect}
+    </>
+  );
 }

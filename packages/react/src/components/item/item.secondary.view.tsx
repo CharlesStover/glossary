@@ -5,17 +5,19 @@ import mapMetaComponentToElement from '../../utils/map-meta-component-to-element
 interface Props {
   readonly children: readonly unknown[] | undefined;
   readonly loading: boolean;
+  readonly selected: boolean;
 }
 
 export default function Secondary({
   children,
   loading,
+  selected,
 }: Props): ReactElement | null {
   if (loading) {
     return <>Loading...</>;
   }
 
-  if (typeof children === 'undefined') {
+  if (!selected || typeof children === 'undefined') {
     return null;
   }
 

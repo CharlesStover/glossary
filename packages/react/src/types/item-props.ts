@@ -7,6 +7,7 @@ export default interface ItemProps {
   readonly id: string;
   readonly loading: boolean;
   readonly onClick: () => void;
+  readonly redirect?: string | undefined;
   readonly search: string;
   readonly selected: boolean;
   readonly word: string;
