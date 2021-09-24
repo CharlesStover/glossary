@@ -1,6 +1,9 @@
 {
+  "new": "This is where you land when you select ${{ redirect }}.",
   "number": "e.g. ${{ one }}, ${{ two }}, or ${{ three }}.",
   "one": "The first ${{ number }}.",
+  "redirect": "${{ new }}",
   "three": "The third ${{ number }}.",
+  "try to redirect": "You can test redirection by clicking ${{ redirect }}.",
   "two": "The second ${{ number }}."
 }

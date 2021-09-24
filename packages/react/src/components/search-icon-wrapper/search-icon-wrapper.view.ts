@@ -8,13 +8,13 @@ AppBar search component as defined by the MUI documentation:
 
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
 const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
   alignItems: 'center',
+  display: 'flex',
+  height: '100%',
   justifyContent: 'center',
+  padding: theme.spacing(0, 2),
+  pointerEvents: 'none',
+  position: 'absolute',
 }));
 
 export default SearchIconWrapper;

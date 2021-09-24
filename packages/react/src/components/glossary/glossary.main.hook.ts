@@ -6,13 +6,13 @@ import type {
   MutableRefObject,
 } from 'react';
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import type AsyncState from '../../types/async-state';
 import type DefinitionFileGetter from '../../types/definition-file-getter';
 import type ItemProps from '../../types/item-props';
 import getDefaultAsyncState from '../../utils/get-default-async-state';
-import mapRecordToSortedKeys from '../../utils/map-record-to-sorted-keys';
 import mapWordToId from '../../utils/map-word-to-id';
+import useItemsProps from './glossary.main.hook.items-props';
 import useTheme from './glossary.main.hook.theme';
 
 interface State {
@@ -34,7 +34,6 @@ export default function useGlossary(
   glossaryFileRecord: Readonly<Record<string, DefinitionFileGetter>>,
 ): State {
   // Contexts
-  const history = useHistory();
   const { hash } = useLocation();
 
   // States
@@ -141,67 +140,11 @@ export default function useGlossary(
       [],
     ),
 
-    itemsProps: useMemo((): readonly (Required<Attributes> & ItemProps)[] => {
-      const filterBySearchOrSelected = (word: string): boolean =>
-        search === '' ||
-        word === selectedWord ||
-        word.toLowerCase().includes(search.toLowerCase());
-
-      const words: readonly string[] = mapRecordToSortedKeys(
-        glossaryFileRecord,
-      ).filter(filterBySearchOrSelected);
-
-      const mapWordToItemProps = (
-        word: string,
-      ): Required<Attributes> & ItemProps => {
-        const getDefinitionFile: DefinitionFileGetter | undefined =
-          glossaryFileRecord[word];
-        if (typeof getDefinitionFile === 'undefined') {
-          throw new Error(
-            `Expected definition file getter for word "${word}".`,
-          );
-        }
-
-        const asyncState: AsyncState | undefined =
-          asyncStateMap.get(getDefinitionFile);
-        const selected: boolean = word === selectedWord;
-
-        const getDefinition = (): string | undefined => {
-          if (typeof asyncState === 'undefined') {
-            return;
-          }
-          if (typeof asyncState.data === 'undefined') {
-            return;
-          }
-          if (!selected) {
-            return;
-          }
-          return asyncState.data[word];
-        };
-
-        const getLoading = (): boolean => {
-          if (typeof asyncState === 'undefined') {
-            return false;
-          }
-          return asyncState.loading;
-        };
-
-        const id: string = mapWordToId(word);
-        return {
-          definition: getDefinition(),
-          id,
-          key: id,
-          loading: getLoading(),
-          search,
-          selected,
-          word,
-          onClick: (): void => {
-            history.push(`#${id}`);
-          },
-        };
-      };
-
-      return words.map(mapWordToItemProps);
-    }, [asyncStateMap, glossaryFileRecord, history, search, selectedWord]),
+    itemsProps: useItemsProps({
+      asyncStateMap,
+      glossaryFileRecord,
+      search,
+      selectedWord,
+    }),
   };
 }

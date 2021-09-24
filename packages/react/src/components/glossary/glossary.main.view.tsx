@@ -14,12 +14,15 @@ import SearchIconWrapper from '../../components/search-icon-wrapper';
 import StyledInputBase from '../../components/search-input-base';
 import type DefinitionFileGetter from '../../types/definition-file-getter';
 import mapComponentToPropMapper from '../../utils/map-component-to-prop-mapper';
+import validateString from '../../utils/validate-string';
 import useGlossary from './glossary.main.hook';
+import styles from './glossary.main.module.scss';
 
 interface Props {
   readonly children: Readonly<Record<string, DefinitionFileGetter>>;
 }
 
+const listClassName: string = validateString(styles.list);
 const mapPropsToItem = mapComponentToPropMapper(Item);
 
 export default function Glossary({ children }: Props): ReactElement {
@@ -60,7 +63,7 @@ export default function Glossary({ children }: Props): ReactElement {
         </Toolbar>
       </AppBar>
       <Toolbar />
-      <List>{itemsProps.map(mapPropsToItem)}</List>
+      <List className={listClassName}>{itemsProps.map(mapPropsToItem)}</List>
     </ThemeProvider>
   );
 }

@@ -1,3 +1,4 @@
+/bin/build-glossary/glossary.ts
 /node_modules
 /.eslintrc.json
 /.gitignore
