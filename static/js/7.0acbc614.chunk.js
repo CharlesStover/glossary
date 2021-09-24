@@ -1,0 +1,2 @@
+(this["webpackJsonp@glossary/demo"]=this["webpackJsonp@glossary/demo"]||[]).push([[7],{136:function(e){e.exports=JSON.parse('{"Jace":"a ${{ blue }} planeswalker","blue":"represented by U"}')}}]);
+//# sourceMappingURL=7.0acbc614.chunk.js.map

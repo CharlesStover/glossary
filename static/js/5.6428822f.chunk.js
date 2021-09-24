@@ -1,0 +1,2 @@
+(this["webpackJsonp@glossary/demo"]=this["webpackJsonp@glossary/demo"]||[]).push([[5],{134:function(e){e.exports=JSON.parse('{"number":"e.g. ${{ one }}, ${{ two }}, or ${{ three }}.","one":"The first ${{ number }}.","two":"The second ${{ number }}.","three":"The third ${{ number }}."}')}}]);
+//# sourceMappingURL=5.6428822f.chunk.js.map

@@ -1,0 +1,2 @@
+(this["webpackJsonp@glossary/demo"]=this["webpackJsonp@glossary/demo"]||[]).push([[8],{137:function(e){e.exports=JSON.parse('{"Chandra":"a ${{ red }} planeswalker","red":"represented by R"}')}}]);
+//# sourceMappingURL=8.bea0ad0c.chunk.js.map

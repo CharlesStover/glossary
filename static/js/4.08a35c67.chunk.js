@@ -1,0 +1,2 @@
+(this["webpackJsonp@glossary/demo"]=this["webpackJsonp@glossary/demo"]||[]).push([[4],{142:function(s){s.exports=JSON.parse('{"test word":"This is a second ${{ word }}.","word":"This is a first word."}')}}]);
+//# sourceMappingURL=4.08a35c67.chunk.js.map

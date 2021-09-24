@@ -1,0 +1,2 @@
+(this["webpackJsonp@glossary/demo"]=this["webpackJsonp@glossary/demo"]||[]).push([[3],{133:function(e){e.exports=JSON.parse('{"try to redirect":"You can test redirection by clicking ${{ redirect }}.","redirect":"${{ new }}","new":"This is where you land when you select ${{ redirect }}."}')}}]);
+//# sourceMappingURL=3.451346a3.chunk.js.map
