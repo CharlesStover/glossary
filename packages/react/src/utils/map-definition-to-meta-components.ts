@@ -6,7 +6,7 @@ import type MetaComponent from '../types/meta-component';
 import isEven from '../utils/is-even';
 import mapWordToId from '../utils/map-word-to-id';
 
-const WORD = /\${{ ([\d\w ]+) }}/g;
+const WORD = /\${{ ([\d\w\- ]+) }}/g;
 
 export default function mapDefinitionToMetaComponents(
   definition: string,

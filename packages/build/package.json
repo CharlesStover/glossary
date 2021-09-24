@@ -1,6 +1,6 @@
 {
   "name": "@glossary/build",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Charles Stover <glossary+build@charlesstover.com>",
   "description": "Build utilities for a glossary application",
   "homepage": "https://www.npmjs.com/package/@glossary/build",

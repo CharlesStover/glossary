@@ -19,7 +19,7 @@ interface Props {
   readonly selectedWord?: string | undefined;
 }
 
-const DEFINITION_REDIRECT = /^\${{ ([\d\w ]+) }}$/;
+const DEFINITION_REDIRECT = /^\${{ ([\d\w\- ]+) }}$/;
 const FIRST_MATCH = 1;
 
 const mapDefinitionToRedirectWord = (

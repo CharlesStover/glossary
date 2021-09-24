@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 module.exports = function mapDefinitionToWordsInDefinition(definition) {
-  const words = definition.match(/\${{ [\d\w ]+ }}/g);
+  const words = definition.match(/\${{ [\d\w\- ]+ }}/g);
   if (words === null) {
     return [];
   }
